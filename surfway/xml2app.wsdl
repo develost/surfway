@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="https://www.develost.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="https://www.develost.com/">
+    <types>
+        <xsd:schema targetNamespace="https://www.develost.com/">
+            <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+            <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+        </xsd:schema>
+    </types>
+    <message name="generateRequest">
+        <part name="username" type="xsd:string" />
+        <part name="password" type="xsd:string" />
+        <part name="genType" type="xsd:string" />
+        <part name="clientVersion" type="xsd:string" />
+        <part name="application" type="xsd:string" />
+    </message>
+    <message name="generateResponse">
+        <part name="output" type="xsd:string" /></message>
+        <portType name="SurfwayPortType">
+            <operation name="generate">
+                <input message="tns:generateRequest"/>
+                <output message="tns:generateResponse"/>
+            </operation>
+        </portType>
+    <binding name="SurfwayBinding" type="tns:SurfwayPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="generate">
+            <soap:operation soapAction="https://www.develost.com/apps/surfway/last/index.php/generate" style="rpc"/>
+            <input>
+                <soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="Surfway">
+        <port name="SurfwayPort" binding="tns:SurfwayBinding">
+            <soap:address location="https://www.develost.com/apps/surfway/last/index.php"/>
+        </port>
+    </service>
+</definitions>

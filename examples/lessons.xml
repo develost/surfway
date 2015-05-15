@@ -9,7 +9,7 @@
             <host>localhost</host>
             <username>root</username>
             <password>pwd</password>
-            <db>tables2app02</db>
+            <db>lessonsdb</db>
             <connectionString></connectionString>
             <fileName></fileName>
         </connection>
